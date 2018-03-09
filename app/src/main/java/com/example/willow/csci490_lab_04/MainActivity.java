@@ -3,15 +3,11 @@ package com.example.willow.csci490_lab_04;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TextView textview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
         openConnection("https://jsonplaceholder.typicode.com/users");
     }
-
     public String openConnection(String url2) {
-        URL url = null;
+        /*URL url = null;
         try {
             url = new URL("https://jsonplaceholder.typicode.com/users");
         } catch (MalformedURLException e) {
@@ -48,10 +43,18 @@ public class MainActivity extends AppCompatActivity {
             line = bufferedReader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+
+        TextView textView = findViewById(R.id.textview);
+
+        MyAsync asynctask = new MyAsync(textView);
+
+        asynctask.execute(url2);
 
         Log.i("Lab_04.onCreate()", "read line");
 
         return url2;
     }
+
+
 }
